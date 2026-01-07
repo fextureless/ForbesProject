@@ -1,0 +1,12 @@
+# IDEA files
+.idea/
+*.iml
+
+# Compiled output
+out/
+
+# Database files
+forbes.db
+
+# macOS system files
+.DS_Store
