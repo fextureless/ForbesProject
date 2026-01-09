@@ -9,10 +9,8 @@ public class Billionaire {
     private String source;
     private String industry;
 
-    // Конструктор по умолчанию
     public Billionaire() {}
 
-    // Конструктор со всеми параметрами
     public Billionaire(int rank, String name, double netWorth, int age,
                        String country, String source, String industry) {
         this.rank = rank;

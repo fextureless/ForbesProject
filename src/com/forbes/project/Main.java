@@ -12,13 +12,10 @@ public class Main {
     @SuppressWarnings({"unused", "EmptyTryBlock", "ResultOfMethodCallIgnored"})
     public static void main(String[] args) {
         System.out.println("ПРОЕКТ: АНАЛИЗ МИЛЛИАРДЕРОВ FORBES");
-        System.out.println("Версия: 1.0");
-        System.out.println("================================================");
 
         String csvPath = "data/Forbes.csv";
         System.out.println("\nПуть к CSV файлу: " + csvPath);
 
-        // Проверяем существование файла
         java.io.File file = new java.io.File(csvPath);
         if (!file.exists()) {
             System.err.println("ОШИБКА: Файл не найден!");
@@ -26,9 +23,7 @@ public class Main {
             return;
         }
 
-        // Шаг 1: Чтение CSV
         System.out.println("\nШАГ 1: ЧТЕНИЕ ДАННЫХ ИЗ CSV ФАЙЛА");
-        System.out.println("----------------------------------------");
 
         List<Billionaire> billionaires = CSVReaderUtil.readBillionaires(csvPath);
 
@@ -40,9 +35,7 @@ public class Main {
         CSVReaderUtil.printFirstNBillionaires(billionaires, 5);
         waitForUser("Нажмите Enter для продолжения...");
 
-        // Шаг 2: Работа с базой данных
         System.out.println("\nШАГ 2: РАБОТА С БАЗОЙ ДАННЫХ SQLite");
-        System.out.println("----------------------------------------");
 
         DatabaseManager.connect();
         DatabaseManager.createTable();
@@ -57,7 +50,6 @@ public class Main {
 
         DatabaseManager.saveBillionaires(billionaires);
 
-        // Шаг 3: Выполнение заданий
         System.out.println("\nШАГ 3: ВЫПОЛНЕНИЕ ЗАДАНИЙ ПО ВАРИАНТУ");
         System.out.println("----------------------------------------");
 
@@ -67,7 +59,6 @@ public class Main {
         DatabaseManager.findTopUSEnergyBillionaire();
         waitForUser("Нажмите Enter для подготовки данных к графику...");
 
-        // Шаг 4: Подготовка данных для графика
         Map<String, Double> capitalByCountry = DatabaseManager.getTotalCapitalByCountry();
 
         if (!capitalByCountry.isEmpty()) {
@@ -79,7 +70,6 @@ public class Main {
             ChartGenerator.createCapitalByCountryChart(capitalByCountry);
         }
 
-        // Шаг 5: Завершение
         System.out.println("\nШАГ 5: ЗАВЕРШЕНИЕ РАБОТЫ");
         System.out.println("----------------------------------------");
 
@@ -94,7 +84,6 @@ public class Main {
         try {
             new Scanner(System.in).nextLine();
         } catch (Exception e) {
-            // Игнорируем ошибки
         }
     }
 }
